@@ -1,0 +1,13 @@
+#!/usr/bin/perl
+open IN, "<out_produce";
+open OUT, ">out_total";
+foreach(<IN>){
+	chomp;
+	if(/Lat/){
+		$lat=substr($_,14,7);
+		$long=substr($_,38,8);
+	}
+	if(/X =/){$a=substr($_,19,8);print OUT "$long $lat $a\n";}
+}
+close(IN);
+close(OUT);

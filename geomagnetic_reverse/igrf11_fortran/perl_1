@@ -1,0 +1,22 @@
+#!/usr/bin/perl
+open(OUT,"|./igrf11");
+	print OUT "out_produce\n";
+	print OUT "2\n";
+	print OUT "1\n";
+	print OUT "2\n";
+	$name=0;
+for($lat=-90;$lat<=90;$lat+=1){
+ for($long=-179;$long<=180;$long+=1){
+	print OUT "1990.0\n";
+	print OUT "6371.2\n";
+	print OUT "$lat $long\n";
+	print OUT "$name\n";
+	if($lat>=90 && $long>=180){
+		print OUT "n\n";
+	}else{
+		print OUT "y\n";
+	}
+	if($lat==-90 || $lat==90){$long=180;}
+ }
+}
+close(OUT);
